@@ -47,6 +47,9 @@ def run_http_server():
 def do_detection_poll():
   global macs_triggering_alarm
   global ignored_macs
+
+  macs_triggering_alarm = []
+
   with open('/var/lib/misc/dnsmasq.leases', 'r') as fd:
     contents = fd.read()
     for line in contents.splitlines():
@@ -70,6 +73,10 @@ def do_detection_poll():
 
   # Sound alarm if len(macs_triggering_alarm) > 0:
   if len(macs_triggering_alarm) > 0:
+    # First lookup names by MAC from /opt/device_names.csv
+
+    # espeak -v en-us+m3 --stdout "John Smith has brought a phone into the workplace" | aplay
+
     # This will run for ~8 seconds
     subprocess.run([
       'mpv', '/opt/alarm.mp3'

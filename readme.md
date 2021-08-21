@@ -86,7 +86,7 @@ sudo systemctl enable --now hostapd.service
 4. Install `pulseaudio`:
 
 ```bash
-sudo pacman -S pulseaudio
+sudo pacman -S pulseaudio alsa alsa-utils
 
 # https://wiki.archlinux.org/title/PulseAudio#Starting_system-wide_on_boot
 cat > /etc/systemd/system/pulseaudio.service <<EOF
@@ -139,6 +139,13 @@ systemctl enable --now dnsmasq.service
 
 ```
 
+4. Install `espeak`
+
+```bash
+pacman -S espeak
+
+```
+
 5. Copy over script and service files:
 
 `phone_detectinator.py` goes in `/opt/phone_detectinator.py`
@@ -153,6 +160,7 @@ systemctl enable --now dnsmasq.service
 systemctl enable --now phone_detectinator.service
 
 ```
+
 
 
 
